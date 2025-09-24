@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- O Flutter substitui / no build -->
+  <base href="/">
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Viewport afinado para iOS/Safari (evita zoom e usa área inteira da tela) -->
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <!-- Evita o Safari transformar números em links de telefone -->
+  <meta name="format-detection" content="telephone=no">
+
+  <meta name="description" content="Hit Count — placar de hits e pontuação para combates.">
+  <meta name="theme-color" content="#000000">
+
+  <!-- iOS / PWA -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Hit Count">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <!-- Social -->
+  <meta property="og:title" content="Hit Count" />
+  <meta property="og:description" content="Placar de hits e pontuação para combates" />
+  <meta property="og:type" content="website" />
+
+  <title>Hit Count</title>
+  <link rel="manifest" href="manifest.json">
+
+  <!-- CSS do overlay de orientação (precisa estar no <head> ou dentro do <body>, nunca fora) -->
+  <style>
+    #rotate-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      color: #fff;
+      display: none; /* ativo apenas no retrato */
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      text-align: center;
+      padding: calc(24px + env(safe-area-inset-top)) 24px
+               calc(24px + env(safe-area-inset-bottom)) 24px;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    }
+    #rotate-overlay .box {
+      max-width: 460px;
+      margin: 0 auto;
+    }
+    #rotate-overlay .icon {
+      font-size: 64px;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    /* Em retrato, mostra o overlay (apenas telas pequenas) */
+    @media (orientation: portrait) and (max-width: 1024px) {
+      #rotate-overlay { display: flex; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Bootstrap do Flutter (deixe por último no body) -->
+  <script src="flutter_bootstrap.js" async></script>
+
+  <!-- Firebase (module) -->
+  <script type="module">
+    // Firebase v12 (ESM)
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+    // Importes extras (se usar): auth, analytics, etc.
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDIDQbB4HiZ_NH4ySb0iqCTwDJXoXmQJKI",
+      authDomain: "contador-de-hits.firebaseapp.com",
+      projectId: "contador-de-hits",
+      storageBucket: "contador-de-hits.appspot.com",
+      messagingSenderId: "341076919045",
+      appId: "1:341076919045:web:d562c27f67469672e82d6c"
+    };
+
+    initializeApp(firebaseConfig);
+  </script>
+
+  <!-- Overlay que aparece só no modo retrato em celulares -->
+  <div id="rotate-overlay" aria-hidden="true">
+    <div class="box">
+      <div class="icon">📱↔️</div>
+      <h2 style="margin:0 0 8px;">Gire o aparelho</h2>
+      <p style="margin:0;">O Hit Count funciona em modo horizontal (paisagem).</p>
+    </div>
+  </div>
+</body>
+</html>
