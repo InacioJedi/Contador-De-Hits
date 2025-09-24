@@ -1,6 +1,6 @@
 # Placar de HITS — (Flutter)
 
-App Flutter para gerenciamento de **HITS**, **timer** e **pontuação final** seguindo critérios de julgamento de combate (Robocore).
+App Flutter para gerenciamento de **HITS**, **timer** e **pontuação final** seguindo critérios de julgamento de combate.
 
 ## ✨ Recursos
 - 🕒 Timer configurável (min/seg), play/pause/reset + haptic feedback
