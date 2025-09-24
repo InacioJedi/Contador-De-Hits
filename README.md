@@ -1,16 +1,69 @@
-# contador_de_hits
+# Placar de HITS — (Flutter)
 
-A new Flutter project.
+App Flutter para gerenciamento de **HITS**, **timer** e **pontuação final** seguindo critérios de julgamento de combate (Robocore).
 
-## Getting Started
+## ✨ Recursos
+- 🕒 Timer configurável (min/seg), play/pause/reset + haptic feedback
+- 👆 Placar rápido (+1 por lado ao toque, −1 nos cantos)
+- 🎨 Nomes e cores personalizáveis
+- 📘 Acesso ao PDF oficial de critérios (Robocore)
+- 🧮 Finalização: Dano (6 níveis) + Agressividade pelos HITS (3 juízes) → total automático
+- 🗂️ Código dividido em `pages/` e `widgets/`
 
-This project is a starting point for a Flutter application.
+## 📂 Estrutura
+lib/
+├─ main.dart
+├─ pages/
+│ ├─ scoreboard_page.dart
+│ ├─ edit_names_page.dart
+│ ├─ finalize_fight_page.dart
+│ ├─ color_settings_page.dart
+│ ├─ regras_robocore_page.dart
+│ ├─ damage_classification_page.dart
+│ └─ timer_config_page.dart
+└─ widgets/
+├─ round_icon_button.dart
+├─ half_pane.dart
+└─ top_pill_button.dart
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🚀 Rodando
+```bash
+flutter pub get
+flutter run         # ou: flutter run -d chrome
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+🧩 Dependências
+
+url_launcher
+
+📝 Licença
+
+MIT — veja LICENSE.
+
+
+---
+
+# (Opcional) CI com GitHub Actions
+
+Crie `.github/workflows/flutter.yml`:
+```yaml
+name: Flutter CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 'stable'
+      - run: flutter --version
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test --no-pub || true   # se não tiver testes ainda
